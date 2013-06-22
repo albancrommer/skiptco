@@ -1,0 +1,4 @@
+nbproject/*
+nbproject
+make.sh
+exclude.lst
