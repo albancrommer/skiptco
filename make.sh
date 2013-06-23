@@ -1,3 +1,3 @@
 #! /bin/bash
-zip ~/tmp/skiptco.xpi ./* --exclude="./make.sh" 
+zip ~/tmp/skiptco.xpi ./* --exclude=@exclude.lst
 

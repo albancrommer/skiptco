@@ -1,1 +1,9 @@
-<?xml version="1.0"?><overlay xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'><script type='application/x-javascript' src='chrome://skiptco/content/xmlhttprequester.js'></script><script type='application/x-javascript' src='chrome://skiptco/content/prefman.js'></script><script type='application/x-javascript' src='chrome://skiptco/content/script-compiler.js'></script></overlay>
+<?xml version="1.0"?>
+<overlay xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+    <script type='application/x-javascript' src='chrome://skiptco/content/xmlhttprequester.js'></script>
+    <script type='application/x-javascript' src='chrome://skiptco/content/prefman.js'></script>
+    <script type='application/x-javascript' src='chrome://skiptco/content/skiptco.js'></script>
+    <statusbar id="status-bar">
+  <statusbarpanel id="my-panel" label="&#8631;"  />
+ </statusbar>
+</overlay>
