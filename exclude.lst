@@ -2,3 +2,5 @@ nbproject/*
 nbproject
 make.sh
 exclude*
+resources/
+resources/*

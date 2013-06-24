@@ -1,3 +1,3 @@
 #! /bin/bash
-zip ~/tmp/skiptco.xpi ./* --exclude=@exclude.lst
+zip -r ~/tmp/skiptco.xpi ./* --exclude=@exclude.lst
 
