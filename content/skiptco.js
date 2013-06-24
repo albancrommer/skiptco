@@ -139,6 +139,8 @@ skiptcoAgent = {
         style = doc.createElement("style")
         style.innerHTML = '.tco-ham-proof:before{ content: "↷";}'
         doc.body.appendChild(style)
+        // Binds to click
+        doc.body.addEventListener("click",function(){main("run on click")},false)
         // Binds main function to DOM changes
         observeProxy([".stream-items","#profile_popup"]);
   }
