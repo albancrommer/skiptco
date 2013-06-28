@@ -1,9 +1,10 @@
 // Script wide settings and vars
-var DEBUG = true,                   // Basic switch
-    bind_class="tco-bind",          // class tagging observed DOM elements
-    anchor_class= "tco-ham-proof",  // class for tagging modified anchors
-    skiptcoAgent,                   // the agent called by document events 
-    doc;                            // singleton for the document
+var DEBUG = true,                           // Basic switch
+    bind_class          ="tco-bind",        // class tagging observed DOM elements
+    anchor_class        = "tco-ham-proof",  // class for tagging modified anchors
+    anchor_class_nomark = "tco-ham-nomark", // class for tagging anchors with no mark
+    skiptcoAgent,                           // the agent called by document events 
+    doc;                                    // singleton for the document
 
 // Main function
 function main(debug,mutations){
@@ -13,14 +14,12 @@ function main(debug,mutations){
     _debugMutations(mutations);
     // Defines the injected class name
     var cls = anchor_class,
-        col = false,
-        theDoc,
-        el,
-        ham,
-        i,
-        list =  doc.querySelectorAll("a.twitter-timeline-link"),
-        marker,
-        parent;
+        el, // element
+        efc, // element first child
+        ham, // the GOOD link
+        i, // iterator
+        list =  doc.querySelectorAll("a.twitter-timeline-link") // Elements list
+        ;
         
     for( i=0;i<list.length;i++ ){
         el = list[i]
@@ -28,13 +27,18 @@ function main(debug,mutations){
         if(el.classList.contains("."+cls)){
             continue;
         }
-        col = el.style.color;
         ham = el.getAttribute("data-expanded-url") || "https://"+el.textContent;
 //        _debug("main i:"+i+" el:"+el+" href:"+el.getAttribute("href")+" ham:"+ham)
         el.href = ham;
         el.target = "_blank";
+        // Adds no class for certain objects (thumbnails)
+        efc = el.firstElementChild;
+        if( undefined !== efc && null != efc){
+            if( efc.classList.contains("summary-thumbnail")){
+                continue;
+            }
+        }
         el.classList.add(cls);
-
     }
 
 }
