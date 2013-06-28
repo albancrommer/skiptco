@@ -3,7 +3,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:id>plugin@skiptco.org</em:id>
         <em:name>skiptco</em:name>
-        <em:version>1.1.5</em:version>
+        <em:version>1.1.6</em:version>
         <em:description>Skip t.co</em:description>
         <em:creator>Alban Crommer</em:creator>
         <em:type>2</em:type>

@@ -18,7 +18,8 @@ function main(debug,mutations){
         efc, // element first child
         ham, // the GOOD link
         i, // iterator
-        list =  doc.querySelectorAll("a.twitter-timeline-link") // Elements list
+        list =  doc.querySelectorAll("a.twitter-timeline-link"), // Elements list
+        text // Element text content (some links have no data attribute)
         ;
         
     for( i=0;i<list.length;i++ ){
@@ -27,7 +28,9 @@ function main(debug,mutations){
         if(el.classList.contains("."+cls)){
             continue;
         }
-        ham = el.getAttribute("data-expanded-url") || "https://"+el.textContent;
+        // Builds ham, either with data attribute or current anchor text
+        text = el.textContent.trim();
+        ham = el.getAttribute("data-expanded-url") || text != "" ? text : "#";
 //        _debug("main i:"+i+" el:"+el+" href:"+el.getAttribute("href")+" ham:"+ham)
         el.href = ham;
         el.target = "_blank";
