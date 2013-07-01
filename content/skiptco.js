@@ -13,34 +13,39 @@ function main(debug,mutations){
     _debug(debug);
     _debugMutations(mutations);
     // Defines the injected class name
-    var cls = anchor_class,
-        el, // element
-        efc, // element first child
-        ham, // the GOOD link
-        i, // iterator
-        list =  doc.querySelectorAll("a.twitter-timeline-link"), // Elements list
-        text // Element text content (some links have no data attribute)
+    var cls     = anchor_class,
+        el,                                 // element
+        efc,                                // element first child
+        ham,                                // the Good Link
+        i,                                  // iterator
+        list    =  doc.querySelectorAll("a.twitter-timeline-link"), // Elements list
+        r       = /(http\S*)/,                  // Regular Expression for links cleaning
+        rr,                                 // Regultar Expression result
+        text                                // Element text content (some links have no data attribute)
         ;
         
-    for( i=0;i<list.length;i++ ){
-        el = list[i]
-        parent = el.parentNode;
+    for (i = 0; i<list.length;i++ ){
+        el      = list[i]
         if(el.classList.contains("."+cls)){
             continue;
         }
         // Builds ham, either with data attribute or current anchor text
-        text = el.textContent.trim();
-        ham = el.getAttribute("data-expanded-url") || text != "" ? text : "#";
-//        _debug("main i:"+i+" el:"+el+" href:"+el.getAttribute("href")+" ham:"+ham)
-        el.href = ham;
-        el.target = "_blank";
+        text    = el.textContent.trim();
+        ham     = el.getAttribute("data-expanded-url") || text != "" ? text : "#";
+        rr      = r.exec(ham);
+        _debug("before : ham= "+ham+" text="+text)
+        _debug("rr before: "+rr)
+        ham     = ( null !== rr ) ? rr[1]:"http://"+ham        
+        _debug("ham after: "+ham)
         // Adds no class for certain objects (thumbnails)
-        efc = el.firstElementChild;
+        efc     = el.firstElementChild;
         if( undefined !== efc && null != efc){
             if( efc.classList.contains("summary-thumbnail")){
                 continue;
             }
         }
+        el.href = ham;
+        el.target = "_blank";
         el.classList.add(cls);
     }
 
