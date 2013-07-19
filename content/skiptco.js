@@ -1,6 +1,6 @@
 // Script wide settings and vars
-var DEBUG = true,                           // Basic switch
-    bind_class          ="tco-bind",        // class tagging observed DOM elements
+var DEBUG = false,                          
+    bind_class          = "tco-bind",       // class tagging observed DOM elements
     anchor_class        = "tco-ham-proof",  // class for tagging modified anchors
     anchor_class_nomark = "tco-ham-nomark", // class for tagging anchors with no mark
     skiptcoAgent,                           // the agent called by document events 
@@ -48,6 +48,10 @@ function main(debug,mutations){
         el.target = "_blank";
         el.classList.add(cls);
     }
+    
+    // Skips promoted elements in a not so efficient way
+    // @TODO: Make it efficient : ie add specific mutation listener 
+    setTimeout(function(){ hidePromotedElements() },2000);
 
 }
 
@@ -63,6 +67,24 @@ function observeProxy( options ){
     });
     // sets the body observer: only attrributes
     observer.observe(doc.body, {childList: true, attributes:true});        
+}
+
+/**
+ * $(".promoted-account").hide()
+ * $(".promoted-trend").hide()
+ */
+function hidePromotedElements(){
+    var el = doc.querySelectorAll("[class*='promoted']"),
+        i;
+    if( ! el.length ){
+        _debug("nothing to hide!");
+        return;
+    }
+    for (i=0; i<el.length; i++){
+        el[i].parentNode.removeChild(el[i]);
+    }
+    _debug("Hiding!");
+
 }
 
 // Inits the DOM bindings
