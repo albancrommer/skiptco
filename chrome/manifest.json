@@ -3,7 +3,7 @@
 
     "name": "Skiptco",
     "description": "This extension fixes twitter redirection links",
-    "version": "1.1.9",
+    "version": "1.2.1",
 
       "content_scripts": [
         {

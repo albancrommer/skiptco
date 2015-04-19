@@ -3,7 +3,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:id>plugin@skiptco.org</em:id>
         <em:name>skiptco</em:name>
-        <em:version>1.1.9</em:version>
+        <em:version>1.2.1</em:version>
         <em:description>Skip t.co</em:description>
         <em:creator>Alban Crommer</em:creator>
         <em:type>2</em:type>
@@ -12,7 +12,7 @@
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <em:minVersion>2.0</em:minVersion>
-                <em:maxVersion>25.0</em:maxVersion>
+                <em:maxVersion>40.0</em:maxVersion>
             </Description>
         </em:targetApplication>
     </Description>
