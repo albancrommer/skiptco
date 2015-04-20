@@ -1,6 +1,7 @@
 nbproject/*
 nbproject
-make.sh
+make*
+chrome/*
 exclude*
 resources/
 resources/*
