@@ -1,7 +1,7 @@
 (function(){
 
     // Script wide settings and vars
-    var DEBUG               = FALSE,                         
+    var DEBUG               = false,                         
         agent               = {},
         bind_class          = "tco-bind",       // class tagging observed DOM elements
         anchor_class        = "tco-ham-proof",  // class for tagging modified anchors

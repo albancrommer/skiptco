@@ -1,2 +1,1 @@
 content   skiptco              content/
-overlay	chrome://browser/content/browser.xul	chrome://skiptco/content/skiptco-overlay.xul
