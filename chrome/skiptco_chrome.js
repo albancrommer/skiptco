@@ -74,7 +74,8 @@
                   subtree: true,
                   attributes: true
                 });
-            },    
+
+            },                
             /**
              * 
              * @param {type} selector
@@ -122,7 +123,70 @@
                     el.target = "_blank";
                     el.classList.add(cls);
                 }
-            }
+            },
+             closest : function(el, selector, stopSelector) {
+			  var retval = null;
+			  while (el) {
+				if (el.matches(selector)) {
+				  retval = el;
+				  break
+				} else if (stopSelector && el.matches(stopSelector)) {
+				  break
+				}
+				el = el.parentElement;
+			  }
+			  return retval;
+			},
+			/**
+			 * Patches twitter cards
+			 */
+            patchCards : function(){
+				var cards = document.getElementsByClassName('card2')
+				for ( var i = 0; i < cards.length; i++ ){ 
+					
+					// It should skip if the item has been tagged
+					var card = cards[i] 
+					if( card.classList.contains(anchor_class)){
+						continue;
+					}
+					// It should find the iframe
+					var iframe = card.getElementsByTagName("iframe")[0]
+					// IT should skip if no iframe found
+					if( ! iframe ){
+						break;
+					}
+					// It should find the iframe document
+					var doc = iframe.contentWindow.document;
+					if( ! doc ) {
+						continue;
+					}
+
+					// It should find the ham link 
+					var cardParent = this.closest(card,".tweet");
+					var hamList = cardParent.querySelectorAll('[data-expanded-url]');
+					if( 0 === hamList.length ){
+						continue;
+					}
+					var ham_link = hamList[0].attributes["data-expanded-url"].value;
+
+					// IT should find the links in the iframe document
+					var aList = doc.getElementsByTagName("a")
+					if( ! aList.length ){
+						continue;
+					}
+					
+					// It should tag the card as done once the iframe document links are found
+					card.classList.add(anchor_class);
+
+					// It should send a message to the iframe
+					for ( var i = 0; i < aList.length ; i ++){
+						var el = aList[i];
+						el.href=ham_link;
+					}
+
+				}
+
+			}
         };
         return instance;
 
@@ -149,12 +213,16 @@
 
     };
     
+    
+    
     /**
      *
      */
     twitterAgent.run = function (){
 
         this.patchURL("a.twitter-timeline-link");
+        this.patchCards();
+        
         // Skips promoted elements in a not so efficient way
         // @TODO: Make it efficient : ie add specific mutation listener 
         setTimeout( function(){ agent.hidePromotedElements() } ,2000);
@@ -180,8 +248,9 @@
         }
         // Run the agent, who will bind itself to various elements
         agent.init();      
+
         document.removeEventListener("load", load, true); //remove listener, no longer needed
 
     },true);
-
+    
 })();
