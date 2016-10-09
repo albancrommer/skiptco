@@ -1,4 +1,5 @@
 #! /bin/bash
-rm ~/tmp/skiptco.xpi 
-zip -r ~/tmp/skiptco.xpi ./* --exclude=@exclude.lst
-
+rm skiptco.xpi 
+cd firefox
+zip -r ../skiptco.xpi ./*
+cd ..

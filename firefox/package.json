@@ -1,0 +1,24 @@
+{
+  "name": "Skiptco",
+  "title": "Skiptco",
+  "description": "Fixes Twitter&Tweetdeck interface: t.co links, promoted contents",
+  "author": "Alban Crommer",
+  "license": "GPL v3",
+  "main": "./lib/skiptco.js",
+  "version": "2.0.0",
+  "engines": {
+    "firefox": ">=40.0",
+    "fennec": ">=40.0"
+  },
+  "homepage_url": "https://github.com/albancrommer/skiptco",
+  "permissions": [
+    "activeTab"
+  ],
+  "icons": {
+  "48": "icons/skiptco-48.png",
+  "96": "icons/skiptco-96.png"
+  },
+  "permissions": {
+    "multiprocess": true
+  }
+}
