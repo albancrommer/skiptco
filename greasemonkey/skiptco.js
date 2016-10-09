@@ -1,3 +1,18 @@
+// ==UserScript==
+// @name Skiptco
+// @namespace https://github.com/albancrommer/skiptco
+// @description Replaces Twitter t.co redirection by original links
+// @version 1.2.2
+// @author openuserjsalbancrommer.com
+// @match https://twitter.com/*
+// @match https://tweetdeck.twitter.com/*	
+// @license GPL v3
+// @updateURL https://openuserjs.org/meta/openuserjsalbancrommer.com/Skiptco.meta.js
+// @icon http://www.crommer.net/skiptco/icon-small.png
+// @run-at document-end
+// @homepageURL https://github.com/albancrommer/skiptco
+// ==/UserScript==
+
 (function(){
 
     // Script wide settings and vars
