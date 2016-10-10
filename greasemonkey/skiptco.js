@@ -2,7 +2,7 @@
 // @name Skiptco
 // @namespace https://github.com/albancrommer/skiptco
 // @description Replaces Twitter t.co redirection by original links
-// @version 1.2.2
+// @version %VERSION%
 // @author openuserjsalbancrommer.com
 // @match https://twitter.com/*
 // @match https://tweetdeck.twitter.com/*	
