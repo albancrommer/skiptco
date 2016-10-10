@@ -107,6 +107,11 @@
                     }else if( el.hasAttribute("data-expanded-url" ) ) {
                         ham = el.getAttribute("data-expanded-url")
                     }
+                    // It should not replace some internal links
+                    if( ham[0] === "@" ){
+                        continue;
+                    }
+
                     rr      = r.exec(ham);
                     _debug("before : ham= "+ham+" text="+text)
                     _debug("rr before: "+rr)
@@ -125,68 +130,68 @@
                 }
             },
              closest : function(el, selector, stopSelector) {
-			  var retval = null;
-			  while (el) {
-				if (el.matches(selector)) {
-				  retval = el;
-				  break
-				} else if (stopSelector && el.matches(stopSelector)) {
-				  break
-				}
-				el = el.parentElement;
-			  }
-			  return retval;
-			},
-			/**
-			 * Patches twitter cards
-			 */
+              var retval = null;
+              while (el) {
+                if (el.matches(selector)) {
+                  retval = el;
+                  break
+                } else if (stopSelector && el.matches(stopSelector)) {
+                  break
+                }
+                el = el.parentElement;
+              }
+              return retval;
+            },
+            /**
+             * Patches twitter cards
+             */
             patchCards : function(){
-				var cards = document.getElementsByClassName('card2')
-				for ( var i = 0; i < cards.length; i++ ){ 
-					
-					// It should skip if the item has been tagged
-					var card = cards[i] 
-					if( card.classList.contains(anchor_class)){
-						continue;
-					}
-					// It should find the iframe
-					var iframe = card.getElementsByTagName("iframe")[0]
-					// IT should skip if no iframe found
-					if( ! iframe ){
-						break;
-					}
-					// It should find the iframe document
-					var doc = iframe.contentWindow.document;
-					if( ! doc ) {
-						continue;
-					}
+                var cards = document.getElementsByClassName('card2')
+                for ( var i = 0; i < cards.length; i++ ){ 
+                    
+                    // It should skip if the item has been tagged
+                    var card = cards[i] 
+                    if( card.classList.contains(anchor_class)){
+                        continue;
+                    }
+                    // It should find the iframe
+                    var iframe = card.getElementsByTagName("iframe")[0]
+                    // IT should skip if no iframe found
+                    if( ! iframe ){
+                        break;
+                    }
+                    // It should find the iframe document
+                    var doc = iframe.contentWindow.document;
+                    if( ! doc ) {
+                        continue;
+                    }
 
-					// It should find the ham link 
-					var cardParent = this.closest(card,".tweet");
-					var hamList = cardParent.querySelectorAll('[data-expanded-url]');
-					if( 0 === hamList.length ){
-						continue;
-					}
-					var ham_link = hamList[0].attributes["data-expanded-url"].value;
+                    // It should find the ham link 
+                    var cardParent = this.closest(card,".tweet");
+                    var hamList = cardParent.querySelectorAll('[data-expanded-url]');
+                    if( 0 === hamList.length ){
+                        continue;
+                    }
+                    var ham_link = hamList[0].attributes["data-expanded-url"].value;
 
-					// IT should find the links in the iframe document
-					var aList = doc.getElementsByTagName("a")
-					if( ! aList.length ){
-						continue;
-					}
-					
-					// It should tag the card as done once the iframe document links are found
-					card.classList.add(anchor_class);
+                    // IT should find the links in the iframe document
+                    var aList = doc.getElementsByTagName("a")
+                    if( ! aList.length ){
+                        continue;
+                    }
+                    
+                    // It should tag the card as done once the iframe document links are found
+                    card.classList.add(anchor_class);
 
-					// It should send a message to the iframe
-					for ( var i = 0; i < aList.length ; i ++){
-						var el = aList[i];
-						el.href=ham_link;
-					}
+                    // It should send a message to the iframe
+                    for ( var i = 0; i < aList.length ; i ++){
+                        var el = aList[i];
+                        el.href=ham_link;
+                    }
 
-				}
+                }
 
-			}
+            }
         };
         return instance;
 
