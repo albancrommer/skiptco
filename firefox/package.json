@@ -1,10 +1,10 @@
 {
-  "name": "Skiptco",
+  "name": "skiptco",
   "title": "Skiptco",
   "description": "Fixes Twitter&Tweetdeck interface: t.co links, promoted contents",
   "author": "Alban Crommer",
   "license": "GPL v3",
-  "main": "./lib/skiptco.js",
+  "main": "./lib/main.js",
   "version": "2.0.0",
   "engines": {
     "firefox": ">=40.0",
