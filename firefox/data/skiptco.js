@@ -107,6 +107,11 @@
                     }else if( el.hasAttribute("data-expanded-url" ) ) {
                         ham = el.getAttribute("data-expanded-url")
                     }
+                    // It should not replace some internal links
+                    if( ham[0] === "@" ){
+                        continue;
+                    }
+
                     rr      = r.exec(ham);
                     _debug("before : ham= "+ham+" text="+text)
                     _debug("rr before: "+rr)
