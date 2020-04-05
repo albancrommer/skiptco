@@ -1,3 +1,5 @@
+Caution: this project is not maintained anymore.
+
 skiptco
 =======
 
